@@ -1,12 +1,14 @@
 package aplicativo;
 
 import tabuleiro.Posicao;
+import tabuleiro.Tabuleiro;
 
 public class Statup {
 
 	public static void main(String[] args) {
-		Posicao p = new Posicao(5, 4);
-		System.out.println(p);
+	
+		Tabuleiro tabuleiro = new Tabuleiro(8, 8);
+		
 	}
 
 }
