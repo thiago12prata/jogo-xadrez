@@ -1,10 +1,12 @@
 package aplicativo;
 
+import tabuleiro.Posicao;
+
 public class Statup {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Posicao p = new Posicao(5, 4);
+		System.out.println(p);
 	}
 
 }
