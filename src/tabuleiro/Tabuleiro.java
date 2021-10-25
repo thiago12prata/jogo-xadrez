@@ -15,16 +15,21 @@ public class Tabuleiro {
 	public int getLinha() {
 		return linha;
 	}
-
 	public void setLinha(int linha) {
 		this.linha = linha;
 	}
-
 	public int getColuna() {
 		return coluna;
 	}
-
 	public void setColuna(int coluna) {
 		this.coluna = coluna;
 	}
+	
+	public Peca peca(int linha, int coluna) {
+		return pecas[linha][coluna];
+	}
+	public Peca peca(Posicao posicao) {
+		return pecas[posicao.getLinha()][posicao.getColuna()];
+	}
+	
 }
