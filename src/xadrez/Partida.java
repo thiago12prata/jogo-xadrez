@@ -19,14 +19,14 @@ public class Partida {
 		
 		for (int i=0; i<tabuleiro.getLinha(); i++) {
 			for (int j=0; j<tabuleiro.getColuna(); j++) {
-				mat[i][j] = (PecaXadrez)tabuleiro.peca(i, j);
+				mat[i][j] = (PecaXadrez)tabuleiro.getPeca(i, j);
 			}
 		}
 		return mat;
 	}
 	private void setupInicial() {
 		tabuleiro.colocarPeca(new Torre(tabuleiro, Cor.BRANCO), new Posicao(2, 1));
+		tabuleiro.colocarPeca(new Torre(tabuleiro, Cor.BRANCO), new Posicao(2, 1));
 		tabuleiro.colocarPeca(new Rei(tabuleiro, Cor.PRETO), new Posicao(0, 4));
-		
 	}
 }

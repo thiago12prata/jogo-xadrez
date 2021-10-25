@@ -1,6 +1,5 @@
 package aplicativo;
 
-import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import xadrez.Partida;
 
