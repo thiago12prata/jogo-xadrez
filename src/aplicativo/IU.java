@@ -49,30 +49,42 @@ public class IU {
 		}
 		
 	}
-	
 
-	
+	private static void imprimirPeca(PecaXadrez peca, boolean background) {
+		if(background) {
+			System.out.print(ANSI_BLUE_BACKGROUND);
+		}
+			if (peca == null) {
+				System.out.print("--" + ANSI_RESET);
+			} else {
+				if (peca.getCor() == Cor.BRANCO) {
+					System.out.print(ANSI_WHITE + peca + ANSI_RESET);
+				} else {
+					System.out.print(ANSI_YELLOW + peca + ANSI_RESET);
+				}
+			}
+			System.out.print(" ");
+	}
+
 	public static void imprimirTabuleiro(PecaXadrez[][] pecas) {
 		for (int i = 0; i < pecas.length; i++) {
 			System.out.print((8 - i) + " ");
 			for (int j = 0; j < pecas[i].length; j++) {
-				imprimirPeca(pecas[i][j]);
+				imprimirPeca(pecas[i][j], false);
 			}
 			System.out.println();
 		}
 		System.out.println("  A  B  C  D  E  F  G  H");
 	}
-
-	private static void imprimirPeca(PecaXadrez peca) {
-		if (peca == null) {
-			System.out.print("--");
-		} else {
-			if (peca.getCor() == Cor.BRANCO) {
-				System.out.print(ANSI_WHITE + peca + ANSI_RESET);
-			} else {
-				System.out.print(ANSI_YELLOW + peca + ANSI_RESET);
+	
+	public static void imprimirTabuleiro(PecaXadrez[][] pecas, boolean[][] movimentosPosiveis) {
+		for (int i = 0; i < pecas.length; i++) {
+			System.out.print((8 - i) + " ");
+			for (int j = 0; j < pecas[i].length; j++) {
+				imprimirPeca(pecas[i][j], movimentosPosiveis[i][j]);
 			}
+			System.out.println();
 		}
-		System.out.print(" ");
+		System.out.println("  A  B  C  D  E  F  G  H");
 	}
 }

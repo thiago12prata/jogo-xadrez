@@ -23,10 +23,14 @@ public class Startup {
 				System.out.println();
 				System.out.println("Origem: ");
 				PosicaoXadrez origem = IU.lerjogada(sc);
+				
+				boolean[][] movimentosPosiveis = partida.movimentosPossiveis(origem);
+				IU.limparTela();
+				IU.imprimirTabuleiro(partida.getPecas(), movimentosPosiveis);
+				
 				System.out.println();
 				System.out.println("Destino: ");
-				PosicaoXadrez destino = IU.lerjogada(sc);
-				
+				PosicaoXadrez destino = IU.lerjogada(sc);									
 				PecaXadrez pecaCapturada = partida.executarMovimento(origem, destino);
 			}
 			catch (XadrezException e) {
