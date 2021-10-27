@@ -45,7 +45,7 @@ public class IU {
 			return new PosicaoXadrez(coluna, linha);
 		}
 		catch (RuntimeException e) {
-			throw new InputMismatchException("Erro na entrada dos dados voce deve informar como nos formatos exemplo  A1 ou a1, some de A1 a H8");
+			throw new InputMismatchException("Erro na entrada dos dados voce deve informar como nos formatos exemplo  A1 ou a1, somente de A1 a H8");
 		}
 		
 	}

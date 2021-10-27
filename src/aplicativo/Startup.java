@@ -33,10 +33,12 @@ public class Startup {
 				System.out.println(e.getMessage());
 				System.out.println("Pressione enter para prosseguir");
 				sc.nextLine();
+				sc.nextLine();
 			}
 			catch (InputMismatchException e) {
 				System.out.println(e.getMessage());
 				System.out.println("Pressione enter para prosseguir");
+				sc.nextLine();
 				sc.nextLine();
 			}
 		}
