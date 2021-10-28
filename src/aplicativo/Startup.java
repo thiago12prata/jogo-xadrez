@@ -39,7 +39,7 @@ public class Startup {
 				if (pecaCapturada!= null) {
 					capturadas.add(pecaCapturada);
 				}
-			}
+				}
 			catch (XadrezException e) {
 				System.out.println(e.getMessage());
 				System.out.println("Pressione enter para prosseguir");
