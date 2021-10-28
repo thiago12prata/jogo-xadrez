@@ -1,6 +1,8 @@
 package aplicativo;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import xadrez.Partida;
@@ -14,12 +16,13 @@ public class Startup {
 	
 		Scanner sc = new Scanner(System.in);
 		Partida partida = new Partida();
+		List<PecaXadrez> capturadas = new ArrayList<PecaXadrez>();
 		
 		while(true) {
 			
 			try {
 				IU.limparTela();
-				IU.imprimirPartida(partida);	
+				IU.imprimirPartida(partida, capturadas);	
 				System.out.println();
 				System.out.println("Origem: ");
 				PosicaoXadrez origem = IU.lerjogada(sc);
@@ -32,6 +35,10 @@ public class Startup {
 				System.out.println("Destino: ");
 				PosicaoXadrez destino = IU.lerjogada(sc);									
 				PecaXadrez pecaCapturada = partida.executarMovimento(origem, destino);
+				
+				if (pecaCapturada!= null) {
+					capturadas.add(pecaCapturada);
+				}
 			}
 			catch (XadrezException e) {
 				System.out.println(e.getMessage());
@@ -46,8 +53,6 @@ public class Startup {
 				sc.nextLine();
 			}
 		}
-
-		
 	}
 
 }
