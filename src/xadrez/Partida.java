@@ -20,6 +20,7 @@ public class Partida {
 	private List<Peca> pecasNoTabuleiro;
 	private List<Peca> pecasCapturadas;
 	private boolean xeque;
+	private boolean xequeMate;
 
 	public Partida() {
 		tabuleiro = new Tabuleiro(8, 8);
@@ -32,6 +33,9 @@ public class Partida {
 		
 	public boolean getXeque() {
 		return xeque;
+	}
+	public boolean getXequeMate() {
+		return xequeMate;
 	}
 	public int getTurno() {
 		return turno;
@@ -66,7 +70,11 @@ public class Partida {
 			throw new XadrezException("Jogada invalida: Este movimento te coloca em xeque");
 		}
 		xeque = (estaEmXeque(adversario(jogadorAtual)));
-		proximoTurno();
+		if (estaEmXequeMate(adversario(jogadorAtual))) {
+			xequeMate = true;
+		}else {
+			proximoTurno();
+		}
 		return (PecaXadrez)pecaCapturada;
 	}
 	private Peca realizarMovimento(Posicao origem,Posicao destino) {
@@ -109,19 +117,12 @@ public class Partida {
 		pecasNoTabuleiro.add(peca);
 	}
 	private void setupInicial() {
-		colocarNovaPeca('c', 1, new Torre(tabuleiro, Cor.BRANCO));
-		colocarNovaPeca('c', 2, new Torre(tabuleiro, Cor.BRANCO));
-		colocarNovaPeca('d', 2, new Torre(tabuleiro, Cor.BRANCO));
-		colocarNovaPeca('e', 2, new Torre(tabuleiro, Cor.BRANCO));
-		colocarNovaPeca('e', 1, new Torre(tabuleiro, Cor.BRANCO));
-		colocarNovaPeca('d', 1, new Rei(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('h', 7, new Torre(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('d', 1, new Torre(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
 
-		colocarNovaPeca('c', 7, new Torre(tabuleiro, Cor.PRETO));
-		colocarNovaPeca('c', 8, new Torre(tabuleiro, Cor.PRETO));
-		colocarNovaPeca('d', 7, new Torre(tabuleiro, Cor.PRETO));
-		colocarNovaPeca('e', 7, new Torre(tabuleiro, Cor.PRETO));
-		colocarNovaPeca('e', 8, new Torre(tabuleiro, Cor.PRETO));
-		colocarNovaPeca('d', 8, new Rei(tabuleiro, Cor.PRETO));
+		colocarNovaPeca('b', 8, new Torre(tabuleiro, Cor.PRETO));
+		colocarNovaPeca('a', 8, new Rei(tabuleiro, Cor.PRETO));
 	}
 	
 	private void proximoTurno() {
@@ -150,5 +151,29 @@ public class Partida {
 			}
 		}
 		return false;
+	}
+	private boolean estaEmXequeMate(Cor cor) {
+		if(!estaEmXeque(cor)) {
+			return false;
+		}
+		List<Peca> list =  pecasNoTabuleiro.stream().filter(x -> ((PecaXadrez)x).getCor() == cor).collect(Collectors.toList());
+		for(Peca p : list) {
+			boolean[][] mat = p.movimentosPossiveis();
+			for(int i=0; i < mat.length; i++ ) {
+				for(int j=0; j < mat[i].length; j++ ) {
+					if (mat[i][j]) {
+						Posicao origem = ((PecaXadrez)p).getPosicaoXadrez().toPosicao();
+						Posicao destino = new Posicao(i, j);
+						Peca pecaCapturada = realizarMovimento(origem, destino);
+						boolean xeque = estaEmXeque(cor);
+						desfazerMovimento(origem, destino, pecaCapturada);
+						if(!xeque) {
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return true;
 	}
 }

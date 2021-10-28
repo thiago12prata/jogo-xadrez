@@ -76,9 +76,15 @@ public class IU {
 		imprimirPecasCapturadas(capturadas);
 		System.out.println();
 		System.out.println("Turno: " + partida.getTurno());
-		System.out.println("Esperamdo o jogador: " + partida.getJogadorAtual());	
-		if(partida.getXeque()) {
-			System.out.println("O jogador "+ partida.getJogadorAtual() +" esta em xeque");
+		if(!partida.getXequeMate()) {
+			System.out.println("Esperamdo o jogador: " + partida.getJogadorAtual());	
+			if(partida.getXeque()) {
+				System.out.println("O jogador "+ partida.getJogadorAtual() +" esta em xeque");
+			}
+		}
+		else {
+			System.out.println("XEQUEMATE!!!");
+			System.out.println("Vencedor: "+ partida.getJogadorAtual());
 		}
 	}
 	
