@@ -19,7 +19,7 @@ public class Startup {
 			
 			try {
 				IU.limparTela();
-				IU.imprimirTabuleiro(partida.getPecas());	
+				IU.imprimirPartida(partida);	
 				System.out.println();
 				System.out.println("Origem: ");
 				PosicaoXadrez origem = IU.lerjogada(sc);
