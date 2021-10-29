@@ -56,7 +56,6 @@ public class Peao extends PecaXadrez{
 		}
 		return mat;
 	}
-
 	@Override
 	public String toString() {
 		return "PE";
