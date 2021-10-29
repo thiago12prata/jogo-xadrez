@@ -10,6 +10,7 @@ import tabuleiro.Peca;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import xadrez.pecas.Bispo;
+import xadrez.pecas.Cavalo;
 import xadrez.pecas.Peao;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
@@ -134,6 +135,8 @@ public class Partida {
 		colocarNovaPeca('h', 2, new Peao(tabuleiro, Cor.BRANCO));
 		colocarNovaPeca('c', 1, new Bispo(tabuleiro, Cor.BRANCO));
 		colocarNovaPeca('f', 1, new Bispo(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('b', 1, new Cavalo(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('g', 1, new Cavalo(tabuleiro, Cor.BRANCO));
 		
 		colocarNovaPeca('a', 8, new Torre(tabuleiro, Cor.PRETO));
 		colocarNovaPeca('h', 8, new Torre(tabuleiro, Cor.PRETO));
@@ -148,7 +151,8 @@ public class Partida {
 		colocarNovaPeca('h', 7, new Peao(tabuleiro, Cor.PRETO));
 		colocarNovaPeca('c', 8, new Bispo(tabuleiro, Cor.PRETO));
 		colocarNovaPeca('f', 8, new Bispo(tabuleiro, Cor.PRETO));
-
+		colocarNovaPeca('b', 8, new Cavalo(tabuleiro, Cor.PRETO));
+		colocarNovaPeca('g', 8, new Cavalo(tabuleiro, Cor.PRETO));
 	}
 	
 	private void proximoTurno() {
